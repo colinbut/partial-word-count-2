@@ -1,0 +1,8 @@
+# Partial Word Count - Java Version
+
+## Requirements
+
+1. An input file should be read in
+2. Counting the number of times word appear in text
+3. Partial word matches should be removed
+4. Then output each word (with partial matches removed) with their count
