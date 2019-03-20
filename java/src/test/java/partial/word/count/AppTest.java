@@ -5,15 +5,20 @@ import static org.junit.Assert.*;
 
 public class AppTest {
 
-    App app = new App();
+    private App app = new App();
 
     @Test
-    public void testWordShouldBeRemovedIfPartialMatchOfAnotherWord() {
-        String word = "may";
-        String line = "may maybe";
+    public void testReadInput_whenWordsAreCount_thenOutputWordWithTheirCount() {
+        String file = "src/test/resources/input.txt";
 
-        String processedLine = app.process(line, word);
+        String result = app.countWords(file);
 
-        assertEquals("maybe", processedLine);
+        assertEquals("A: 1\n" +
+            "mate: 1\n" +
+            "material: 1\n" +
+            "may: 1\n" +
+            "maybe: 2\n" +
+            "right: 1", result);
     }
+
 }
