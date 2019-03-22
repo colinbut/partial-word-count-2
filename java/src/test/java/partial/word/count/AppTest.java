@@ -21,4 +21,16 @@ public class AppTest {
             "right: 1", result);
     }
 
+    @Test
+    public void testPartialWordMatchesShouldBeRemovedFromCount() {
+        String file = "src/test/resources/input.txt";
+
+        String result = app.countWords(file);
+
+        assertEquals(
+            "material: 1\n" +
+            "maybe: 2\n" +
+            "right: 1", result);
+    }
+
 }

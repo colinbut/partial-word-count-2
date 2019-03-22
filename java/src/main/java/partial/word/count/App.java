@@ -22,7 +22,6 @@ public class App {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 words.addAll(Arrays.asList(line.split(" ")));
-
             }
 
             words.forEach(word -> wordCount.merge(word, 1, (a, b) -> a + b));
