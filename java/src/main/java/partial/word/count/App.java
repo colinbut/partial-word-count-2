@@ -24,6 +24,22 @@ public class App {
                 words.addAll(Arrays.asList(line.split(" ")));
             }
 
+            List<String> partialMatches = new ArrayList<>();
+            for (String word: words) {
+                for (String wordToCompareAgainst: words) {
+
+                    if (wordToCompareAgainst.equals(word)) {
+                        continue;
+                    }
+
+                    if (wordToCompareAgainst.contains(word)) {
+                        partialMatches.add(word);
+                        break;
+                    }
+                }
+            }
+            words.removeAll(partialMatches);
+
             words.forEach(word -> wordCount.merge(word, 1, (a, b) -> a + b));
 
             StringJoiner stringJoiner = new StringJoiner("\n", "", "");

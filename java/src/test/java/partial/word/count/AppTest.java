@@ -28,7 +28,8 @@ public class AppTest {
         String result = app.countWords(file);
 
         assertEquals(
-            "material: 1\n" +
+            "A: 1\n" +
+                "material: 1\n" +
             "maybe: 2\n" +
             "right: 1", result);
     }
