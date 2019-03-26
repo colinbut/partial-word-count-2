@@ -49,16 +49,10 @@ public class App {
         List<String> filteredWords = new ArrayList<>(unfilteredWords);
         List<String> partialMatches = new ArrayList<>();
         for (String word : unfilteredWords) {
-            for (String wordToCompareAgainst : unfilteredWords) {
-
-                if (wordToCompareAgainst.equals(word)) {
-                    continue;
-                }
-
-                if (wordToCompareAgainst.contains(word)) {
-                    partialMatches.add(word);
-                    break;
-                }
+            if (unfilteredWords.stream()
+                .filter(wordToCompareAgainst -> !wordToCompareAgainst.equals(word))
+                .anyMatch(wordToCompareAgainst -> wordToCompareAgainst.contains(word))) {
+                partialMatches.add(word);
             }
         }
         filteredWords.removeAll(partialMatches);
