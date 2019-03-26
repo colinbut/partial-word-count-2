@@ -18,6 +18,19 @@ import java.util.StringJoiner;
 
 public class App {
 
+    String run(String fileName) {
+        List<String> words = readInFromInputFile(fileName);
+        List<String> filteredWords = removePartialMatches(words);
+        Map<String, Integer> wordCount = countWords(filteredWords);
+        return formatOutputToDisplay(wordCount);
+    }
+
+    private String formatOutputToDisplay(Map<String, Integer> wordCount) {
+        StringJoiner stringJoiner = new StringJoiner("\n", "", "");
+        wordCount.forEach((word, count) -> stringJoiner.add(word + ": " + count));
+        return stringJoiner.toString();
+    }
+
     private List<String> readInFromInputFile(String fileName) {
         List<String> words = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileName)))) {
@@ -32,18 +45,12 @@ public class App {
         return words;
     }
 
-    String countWords(String fileName) {
-        List<String> words = readInFromInputFile(fileName);
-        List<String> filteredWords = removePartialMatches(words);
-
+    private Map<String, Integer> countWords(List<String> filteredWords){
         Map<String, Integer> wordCount = new LinkedHashMap<>();
         filteredWords.forEach(word -> wordCount.merge(word, 1, (a, b) -> a + b));
-
-        StringJoiner stringJoiner = new StringJoiner("\n", "", "");
-        wordCount.forEach((word, count) -> stringJoiner.add(word + ": " + count));
-
-        return stringJoiner.toString();
+        return wordCount;
     }
+
 
     List<String> removePartialMatches(List<String> unfilteredWords) {
         List<String> filteredWords = new ArrayList<>(unfilteredWords);

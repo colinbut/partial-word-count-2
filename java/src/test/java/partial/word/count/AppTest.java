@@ -20,7 +20,7 @@ public class AppTest {
     public void testReadInput_whenWordsAreCount_thenOutputWordWithTheirCount() {
         String file = "src/test/resources/input.txt";
 
-        String result = app.countWords(file);
+        String result = app.run(file);
 
         assertEquals("A: 1\n" +
             "material: 1\n" +
