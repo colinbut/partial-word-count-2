@@ -14,36 +14,33 @@ import java.util.StringJoiner;
 public class App {
 
     String countWords(String file) {
+        List<String> words = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(file)))) {
-
-            List<String> words = new ArrayList<>();
-
-            Map<String, Integer> wordCount = new LinkedHashMap<>();
-
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 words.addAll(Arrays.asList(line.split(" ")));
             }
 
-            List<String> filteredWords = removePartialMatches(words);
-
-            filteredWords.forEach(word -> wordCount.merge(word, 1, (a, b) -> a + b));
-
-            StringJoiner stringJoiner = new StringJoiner("\n", "", "");
-            wordCount.forEach((word, count) -> stringJoiner.add(word + ": " + count));
-
-            return stringJoiner.toString();
         } catch (IOException ex) {
             System.err.print(ex.getLocalizedMessage());
         }
-        return file;
+
+        List<String> filteredWords = removePartialMatches(words);
+
+        Map<String, Integer> wordCount = new LinkedHashMap<>();
+        filteredWords.forEach(word -> wordCount.merge(word, 1, (a, b) -> a + b));
+
+        StringJoiner stringJoiner = new StringJoiner("\n", "", "");
+        wordCount.forEach((word, count) -> stringJoiner.add(word + ": " + count));
+
+        return stringJoiner.toString();
     }
 
     List<String> removePartialMatches(List<String> unfilteredWords) {
         List<String> filteredWords = new ArrayList<>(unfilteredWords);
         List<String> partialMatches = new ArrayList<>();
-        for (String word: unfilteredWords) {
-            for (String wordToCompareAgainst: unfilteredWords) {
+        for (String word : unfilteredWords) {
+            for (String wordToCompareAgainst : unfilteredWords) {
 
                 if (wordToCompareAgainst.equals(word)) {
                     continue;
