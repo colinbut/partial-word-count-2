@@ -13,9 +13,9 @@ import java.util.StringJoiner;
 
 public class App {
 
-    String countWords(String file) {
+    private List<String> readInFromInputFile(String fileName) {
         List<String> words = new ArrayList<>();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(file)))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileName)))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 words.addAll(Arrays.asList(line.split(" ")));
@@ -24,7 +24,11 @@ public class App {
         } catch (IOException ex) {
             System.err.print(ex.getLocalizedMessage());
         }
+        return words;
+    }
 
+    String countWords(String fileName) {
+        List<String> words = readInFromInputFile(fileName);
         List<String> filteredWords = removePartialMatches(words);
 
         Map<String, Integer> wordCount = new LinkedHashMap<>();
