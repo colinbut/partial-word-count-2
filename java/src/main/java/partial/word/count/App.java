@@ -25,11 +25,6 @@ public class App {
         return formatOutputToDisplay(wordCount);
     }
 
-    private String formatOutputToDisplay(Map<String, Integer> wordCount) {
-        StringJoiner stringJoiner = new StringJoiner("\n", "", "");
-        wordCount.forEach((word, count) -> stringJoiner.add(word + ": " + count));
-        return stringJoiner.toString();
-    }
 
     private List<String> readInFromInputFile(String fileName) {
         List<String> words = new ArrayList<>();
@@ -64,5 +59,11 @@ public class App {
         }
         filteredWords.removeAll(partialMatches);
         return filteredWords;
+    }
+
+    private String formatOutputToDisplay(Map<String, Integer> wordCount) {
+        StringJoiner stringJoiner = new StringJoiner("\n", "", "");
+        wordCount.forEach((word, count) -> stringJoiner.add(word + ": " + count));
+        return stringJoiner.toString();
     }
 }
