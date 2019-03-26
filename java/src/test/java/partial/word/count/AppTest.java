@@ -1,6 +1,10 @@
 package partial.word.count;
 
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
@@ -14,24 +18,18 @@ public class AppTest {
         String result = app.countWords(file);
 
         assertEquals("A: 1\n" +
-            "mate: 1\n" +
             "material: 1\n" +
-            "may: 1\n" +
             "maybe: 2\n" +
             "right: 1", result);
     }
 
     @Test
-    public void testPartialWordMatchesShouldBeRemovedFromCount() {
-        String file = "src/test/resources/input.txt";
+    public void testPartialWordMatchesShouldBeRemovedFromWordsList() {
+        List<String> unfilteredWords = Arrays.asList("A", "mate", "material", "may", "maybe", "right", "maybe");
 
-        String result = app.countWords(file);
+        List<String> result = app.removePartialMatches(unfilteredWords);
 
-        assertEquals(
-            "A: 1\n" +
-                "material: 1\n" +
-            "maybe: 2\n" +
-            "right: 1", result);
+        assertEquals(Arrays.asList("A", "material", "maybe", "right", "maybe"), result);
     }
 
 }
