@@ -16,7 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-public class App {
+public class PartialWordCount {
+
+    public static void main(String[] args) {
+        new PartialWordCount().run(args[0]);
+    }
 
     String run(String fileName) {
         List<String> words = readInFromInputFile(fileName);

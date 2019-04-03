@@ -12,15 +12,15 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class AppTest {
+public class PartialWordCountTest {
 
-    private App app = new App();
+    private PartialWordCount partialWordCount = new PartialWordCount();
 
     @Test
     public void testReadInput_whenWordsAreCount_thenOutputWordWithTheirCount() {
         String file = "src/test/resources/input.txt";
 
-        String result = app.run(file);
+        String result = partialWordCount.run(file);
 
         assertEquals("A: 1\n" +
             "material: 1\n" +
@@ -32,7 +32,7 @@ public class AppTest {
     public void testPartialWordMatchesShouldBeRemovedFromWordsList() {
         List<String> unfilteredWords = Arrays.asList("A", "mate", "material", "may", "maybe", "right", "maybe");
 
-        List<String> result = app.removePartialMatches(unfilteredWords);
+        List<String> result = partialWordCount.removePartialMatches(unfilteredWords);
 
         assertEquals(Arrays.asList("A", "material", "maybe", "right", "maybe"), result);
     }
