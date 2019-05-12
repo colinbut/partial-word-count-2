@@ -11,6 +11,12 @@ import java.io.FileReader
 import java.lang.StringBuilder
 import java.util.HashMap
 
+const val INPUT_FILE = "src/main/resources/input.txt"
+
+fun main(args: Array<String>) {
+    println(PartialWordCountK().partialWordCount(INPUT_FILE))
+}
+
 class PartialWordCountK {
 
     fun partialWordCount(inputFile: String): String {
